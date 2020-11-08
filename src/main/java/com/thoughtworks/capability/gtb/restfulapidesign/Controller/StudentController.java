@@ -41,4 +41,10 @@ public class StudentController {
         Student student = studentService.getStudentById(id);
         return ResponseEntity.ok(student);
     }
+
+    @PatchMapping("/students")
+    public ResponseEntity updateStudents(@RequestBody List<Student> studentList) {
+        studentService.updateStudents(studentList);
+        return ResponseEntity.ok("更新成功");
+    }
 }

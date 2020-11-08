@@ -49,4 +49,22 @@ public class StudentService {
         }
         return studentList.get(0);
     }
+
+    public void updateStudents(List<Student> studentList) {
+        for (int i = 0; i < studentList.size(); ++i) {
+            boolean isFind = false;
+            for (int j = 0; j < StudentList.studentList.size(); ++j) {
+                if (StudentList.studentList.get(j).getId() == studentList.get(i).getId()) {
+                    StudentList.studentList.get(j).setGender(studentList.get(i).getGender());
+                    StudentList.studentList.get(j).setName(studentList.get(i).getName());
+                    StudentList.studentList.get(j).setNote(studentList.get(i).getNote());
+                    isFind = true;
+                    break;
+                }
+            }
+            if (!isFind) {
+                throw new StudentException("id为:" + studentList.get(i).getId() + "的学生不存在");
+            }
+        }
+    }
 }
