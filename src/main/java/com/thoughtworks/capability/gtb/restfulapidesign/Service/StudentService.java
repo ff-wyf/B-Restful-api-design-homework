@@ -41,4 +41,12 @@ public class StudentService {
         }
         return resultList;
     }
+
+    public Student getStudentById(Integer id) {
+        List<Student> studentList = StudentList.studentList.stream().filter(stu -> stu.getId() == id).collect(Collectors.toList());
+        if (studentList.size() == 0) {
+            throw new StudentException("该学生不存在");
+        }
+        return studentList.get(0);
+    }
 }
