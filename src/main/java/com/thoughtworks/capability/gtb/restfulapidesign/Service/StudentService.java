@@ -18,4 +18,13 @@ public class StudentService {
 
         StudentList.studentList.add(student);
     }
+
+    public void delStudentById(Integer id) {
+        int beforeDelLength = StudentList.studentList.size();
+        StudentList.studentList = StudentList.studentList.stream().filter(stu -> stu.getId() != id).collect(Collectors.toList());
+        int afterDelLength = StudentList.studentList.size();
+        if (beforeDelLength == afterDelLength) {
+            throw new StudentException("学生不存在");
+        }
+    }
 }

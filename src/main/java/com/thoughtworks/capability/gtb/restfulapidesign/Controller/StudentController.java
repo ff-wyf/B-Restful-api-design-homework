@@ -22,4 +22,9 @@ public class StudentController {
         return ResponseEntity.ok("添加成功");
     }
 
+    @DeleteMapping("/students/{id}")
+    public ResponseEntity delStudent(@PathVariable Integer id) {
+        studentService.delStudentById(id);
+        return ResponseEntity.ok("删除成功");
+    }
 }
