@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class StudentController {
 
@@ -26,5 +28,11 @@ public class StudentController {
     public ResponseEntity delStudent(@PathVariable Integer id) {
         studentService.delStudentById(id);
         return ResponseEntity.ok("删除成功");
+    }
+
+    @GetMapping("/students")
+    public ResponseEntity<List<Student>> getStudentsByGender(@RequestParam(required = false) String gender) {
+        List<Student> studentList = studentService.getStudentsByGender(gender);
+        return ResponseEntity.ok(studentList);
     }
 }

@@ -27,4 +27,18 @@ public class StudentService {
             throw new StudentException("学生不存在");
         }
     }
+
+    public List<Student> getStudentsByGender(String gender) {
+        if (StudentList.studentList.size() == 0) {
+            throw new StudentException("学生列表为空，请增加学生");
+        }
+        if (gender == null) {
+            return StudentList.studentList;
+        }
+        List<Student> resultList = StudentList.studentList.stream().filter(stu -> stu.getGender().equals(gender)).collect(Collectors.toList());
+        if (resultList.size() == 0) {
+            throw new StudentException("暂无性别为:" + gender+ "的学生");
+        }
+        return resultList;
+    }
 }
