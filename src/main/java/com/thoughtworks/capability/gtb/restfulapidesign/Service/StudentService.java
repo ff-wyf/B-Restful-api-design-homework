@@ -2,6 +2,7 @@ package com.thoughtworks.capability.gtb.restfulapidesign.Service;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.Dto.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.Exception.StudentException;
+import com.thoughtworks.capability.gtb.restfulapidesign.Repository.GroupList;
 import com.thoughtworks.capability.gtb.restfulapidesign.Repository.StudentList;
 import org.springframework.stereotype.Service;
 
@@ -65,6 +66,12 @@ public class StudentService {
             if (!isFind) {
                 throw new StudentException("id为:" + studentList.get(i).getId() + "的学生不存在");
             }
+        }
+    }
+
+    public void groupStudents() {
+        for (int i = 0; i < StudentList.studentList.size(); ++i) {
+            GroupList.groupList.get(i % 6).getStudentList().add(StudentList.studentList.get(i));
         }
     }
 }

@@ -47,4 +47,10 @@ public class StudentController {
         studentService.updateStudents(studentList);
         return ResponseEntity.ok("更新成功");
     }
+
+    @PostMapping("/students/subgroup")
+    public ResponseEntity groupStudents() {
+        studentService.groupStudents();
+        return ResponseEntity.ok("分组成功");
+    }
 }
