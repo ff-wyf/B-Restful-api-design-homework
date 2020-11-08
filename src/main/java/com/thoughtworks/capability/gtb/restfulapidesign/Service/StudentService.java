@@ -6,6 +6,8 @@ import com.thoughtworks.capability.gtb.restfulapidesign.Repository.GroupList;
 import com.thoughtworks.capability.gtb.restfulapidesign.Repository.StudentList;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -70,8 +72,13 @@ public class StudentService {
     }
 
     public void groupStudents() {
-        for (int i = 0; i < StudentList.studentList.size(); ++i) {
-            GroupList.groupList.get(i % 6).getStudentList().add(StudentList.studentList.get(i));
+        List<Student> studentList = StudentList.studentList.stream().map(stu -> stu).collect(Collectors.toList());
+        Collections.shuffle(studentList);
+        for (int i = 0; i < GroupList.groupList.size(); ++i) {
+            GroupList.groupList.get(i).setStudentList(new ArrayList<Student>());
+        }
+        for (int i = 0; i < studentList.size(); ++i) {
+            GroupList.groupList.get(i % 6).getStudentList().add(studentList.get(i));
         }
     }
 }

@@ -18,4 +18,8 @@ public class GroupService {
         }
         groupList.get(0).setName(updateGroupName);
     }
+
+    public List<Group> getGroupsList() {
+        return GroupList.groupList;
+    }
 }
